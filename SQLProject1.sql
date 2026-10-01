@@ -18,7 +18,7 @@ order by 1,2
 
 
 --looking at total cases vs total deaths
---shows the likelihood of die if you got covid in your country
+--shows the likelihood of dying if you contract covid in your country
 
 SELECT location, date, total_cases,total_deaths, (total_deaths /nullif (total_cases,0))*100 as DeathPercentage
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
@@ -27,8 +27,8 @@ where location like 'Chile'
 order by 1,2
 
 
--- looking the total cases vs population
--- shows the percentage of population got covid
+-- looking at the total cases vs population
+-- shows the percentage of the population that got covid
 
 SELECT location, date, population, total_cases,  (total_Cases/population)*100 as PercentagePopulationInfected
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
@@ -36,7 +36,7 @@ where continent is not null
 where location like 'Chile'
 order by 1,2
 
--- looking the countries with highest infeccion rate compared to population
+-- looking at the countries with the highest infection rate compared to population
 
 SELECT location, population, max(total_cases) as Highestinfeccioncount,  max((total_Cases/population))*100 as MAXPercentagePopulationInfected
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
@@ -45,7 +45,7 @@ where continent is not null
 Group by location, population
 order by MAXPercentagePopulationInfected desc
 
---showing countries with highest deaths count per population
+--showing countries with the highest death count per population
 
 SELECT location, population, max(total_deaths) as HighestDeathscount
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
@@ -54,7 +54,7 @@ where continent is not null
 Group by location, population
 order by HighestDeathscount desc
 
--- lets do it by continent
+-- let's do it by continent
 
 SELECT continent, max(total_deaths) as HighestDeathscount
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
@@ -64,7 +64,7 @@ Group by continent
 order by HighestDeathscount desc
 
 -- Global Numbers
--- total new globas cases and deaths per week 
+-- total new global cases and deaths per week 
 
 SELECT date, sum(new_cases) as totalCases, sum(new_deaths) as totalDeaths, sum(new_deaths)/sum(Nullif(new_cases,0)) * 100 as GlobalPercentajeDeaths
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
@@ -73,7 +73,7 @@ where continent is not null
 group by date
 order by 1,2
 
---show the global total deaths percentaje
+--show the global total deaths percentage
 
 SELECT  sum(new_cases) as totalCases, sum(new_deaths) as totalDeaths, sum(new_deaths)/sum(Nullif(new_cases,0)) * 100 as GlobalPercentajeDeaths
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
@@ -154,7 +154,7 @@ from #percentajePopulationVaccinated
 
 
 
--- create view store for later visualization 
+-- create view to store data for later visualization 
 
 create view 
 percentajePopulationVaccinated as
