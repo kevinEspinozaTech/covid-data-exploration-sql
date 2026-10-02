@@ -23,7 +23,7 @@ order by 1,2
 SELECT location, date, total_cases,total_deaths, (total_deaths /nullif (total_cases,0))*100 as DeathPercentage
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
 where continent is not null
-where location like 'Chile'
+and location like 'Chile'
 order by 1,2
 
 
@@ -33,7 +33,7 @@ order by 1,2
 SELECT location, date, population, total_cases,  (total_Cases/population)*100 as PercentagePopulationInfected
 from [Portfolio Project 1].dbo.['covid-data-deaths$']
 where continent is not null
-where location like 'Chile'
+and location like 'Chile'
 order by 1,2
 
 -- looking at the countries with the highest infection rate compared to population
@@ -107,7 +107,7 @@ order by 2,3
 
 
 -- USE CTE
-with PopvsVac (continent,location,date,population,new_vaccinations,RollingPeopleVaccinatios)
+;with PopvsVac (continent,location,date,population,new_vaccinations,RollingPeopleVaccinatios)
 as
 (
 select dea.continent,dea.location,dea.date,dea.population, vac.new_vaccinations, sum(convert(bigint,vac.new_vaccinations)) Over (partition by dea.location order by dea.location,dea.date)
@@ -155,6 +155,7 @@ from #percentajePopulationVaccinated
 
 
 -- create view to store data for later visualization 
+GO
 
 create view 
 percentajePopulationVaccinated as
@@ -168,6 +169,7 @@ on dea.location = vac.location
 and dea.date = vac.date
 --where new_vaccinations is not null
 --order by 2,3
+GO
 
 select*
 from percentajePopulationVaccinated
