@@ -116,7 +116,7 @@ These results come from running `SQLProject1.sql` on SQL Server 2025 against the
 
 **One detail checked while validating the results:** the rolling "people vaccinated" column in the CTE adds up `new_vaccinations`. That field counts **doses**, not people. For Luxembourg the running total reaches 1,286,886 by 2023-03-25, which is about twice the country's population. So the "percentage of people vaccinated" calculated this way can exceed 100%. To measure people, use `people_vaccinated` or `people_fully_vaccinated` from the same dataset.
 
-The aggregated outputs feed my Tableau dashboard. See [covid-tableau-analysis-sql](https://github.com/kevinEspinozaTech/covid-tableau-analysis-sql).
+The aggregated outputs feed my Tableau dashboard. See [covid19-global-dashboard-tableau](https://github.com/kevinEspinozaTech/covid19-global-dashboard-tableau).
 
 ## How to run
 
@@ -131,7 +131,7 @@ The aggregated outputs feed my Tableau dashboard. See [covid-tableau-analysis-sq
 - Reported COVID-19 figures depend on each country's testing and reporting practices, so comparisons between countries are only indicative.
 - `new_vaccinations` counts doses, so the rolling "people vaccinated" percentage is overstated (see *Results*).
 - The temporary-table block keeps its `where` filter commented out, so it also includes continent-level aggregate rows.
-- The "highest death count by continent" query takes the `MAX` of country rows, so it returns the worst-hit **country** in each continent, not the continent total. [covid-tableau-analysis-sql](https://github.com/kevinEspinozaTech/covid-tableau-analysis-sql) calculates the actual totals.
+- The "highest death count by continent" query takes the `MAX` of country rows, so it returns the worst-hit **country** in each continent, not the continent total. [covid19-global-dashboard-tableau](https://github.com/kevinEspinozaTech/covid19-global-dashboard-tableau) calculates the actual totals.
 
 ### Fixed issues
 
